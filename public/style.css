@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+}
+
+body {
+  font-family: Arial;
+  height: 100%;
+}
+
+i {
+  text-align: center;
+  font-size: 2em;
+}
+
+span {
+  font-size: 30px;
+}
+
+.card {
+  display: inline-block;
+  border: 2px solid #ececec;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.temp {
+  font-size: 1em;
+  margin-top: 10px;
+}
