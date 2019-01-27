@@ -1,10 +1,19 @@
 * {
   margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
 }
 
 body {
+  min-height: 100%;
   font-family: Arial;
-  height: 100%;
+  font-family: 'Muli', sans-serif;
+  background-image: url("./imgs/ivzefhwp.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 i {
@@ -16,14 +25,65 @@ span {
   font-size: 30px;
 }
 
-.card {
+.temp {
   display: inline-block;
-  border: 2px solid #ececec;
-  text-align: center;
-  margin-right: 10px;
+  font-size: 3em;
+  margin-left: 5px;
+  margin-top: 40px;
 }
 
-.temp {
-  font-size: 1em;
-  margin-top: 10px;
+.description {
+  font-size: 1.4em;
+}
+
+.icon {
+  display: inline-block;
+
+}
+
+.day {
+  display: inline-block;
+  margin: 210px 250px 0 0;
+  font-size: 1.2em;
+}
+
+.header {
+  text-align: center;
+}
+
+.box {
+  position: relative;
+  display: block;
+  width: 360px;
+  height: 540px;
+  border: 2px solid blue;
+  margin: 50px auto 0 auto;
+  text-align: center;
+  background-image: url("https://i.pinimg.com/originals/9f/4e/38/9f4e38d4634f2b584143be34d1324c0a.png");
+  background-size: cover;
+  z-index: -2;
+}
+
+.content {
+  color: white;
+}
+
+.header > h1 {
+  font-size: 3em;
+}
+
+.location {
+  font-size: 2em;
+  margin-top: 5px;
+}
+
+img {
+  width: 10%;
+}
+
+.date span {
+  float: left;
+  margin-top: 220px;
+  margin-left: 80px;
+  font-size: 20px;
 }
