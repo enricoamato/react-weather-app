@@ -14,16 +14,19 @@ class App extends React.Component {
       humidity: undefined,
       description: undefined,
       error: undefined,
-      day: undefined
+      day: undefined,
+      value: undefined,
+      isButtonClicked: false
     }
     this.handleChange = this.handleChange.bind(this)
+    this.search = this.search.bind(this)
   }
 
-  componentDidMount() {
+  search() {
     const key = 'c2e69d04079cfbe116fe0acc17abb587'
     const endpoint = 'http://api.openweathermap.org/data/2.5/weather?'
 
-    fetch(`${endpoint}q=London&appid=${key}`)
+    fetch(`${endpoint}q=${this.state.value}&appid=${key}`)
       .then(response => response.json())
       .then(response => this.setState({
         total: response,
@@ -34,13 +37,13 @@ class App extends React.Component {
         description: response.weather[0].main,
         error: "",
         day: this.getDay(),
-        value: '',
+        value: "",
+        isButtonClicked: true
       }))
   }
 
   handleChange(event) {
     this.setState({value: event.target.value})
-    console.log(this.state.value)
   }
 
   getDay() {
@@ -51,26 +54,36 @@ class App extends React.Component {
   }
 
   render() {
-    const {temperature, description, day, city, country, date} = this.state
+    const {temperature, description, day, city, country, isButtonClicked} = this.state
 
-    return(
-      <div>
-        <Header />
-          <header className="header">
-            <input type="text" onChange={this.handleChange} value={this.state.value}></input>
-            <button>Search</button>
+    if(isButtonClicked){
+        return(
+          <div>
+          <Header />
+            <header className="header">
+            <input type="text" onChange={this.handleChange}></input>
+            <button onClick={this.search}>Search</button>
           </header>
-
-        <DayLayout
-          temperature={Math.floor((temperature - 272,15))}
-          description={description}
-          day={day}
-          city={city}
-          country={country}
-          // date={date}
-        />
-      </div>
-    )
+          <DayLayout
+            temperature={Math.floor((temperature - 272.15))}
+            description={description}
+            day={day}
+            city={city}
+            country={country}
+          />
+          </div>
+        )
+      } else {
+        return(
+          <div>
+          <Header />
+            <header className="header">
+            <input type="text" onChange={this.handleChange}></input>
+            <button onClick={this.search}>Search</button>
+          </header>
+          </div>
+        )
+      }
   }
 }
 
