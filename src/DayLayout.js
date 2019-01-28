@@ -11,7 +11,6 @@ const DayLayout = (props) => {
             day={props.day}
             city={props.city}
             country={props.country}
-            // date={props.date}
           />
 
     </div>
