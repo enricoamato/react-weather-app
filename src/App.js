@@ -16,7 +16,8 @@ class App extends React.Component {
       error: undefined,
       day: undefined,
       value: undefined,
-      isButtonClicked: false
+      isButtonClicked: false,
+      fullDate: undefined
     }
     this.handleChange = this.handleChange.bind(this)
     this.search = this.search.bind(this)
@@ -27,7 +28,15 @@ class App extends React.Component {
     const endpoint = 'http://api.openweathermap.org/data/2.5/weather?'
 
     fetch(`${endpoint}q=${this.state.value}&appid=${key}`)
-      .then(response => response.json())
+      .then(response => {
+        if(response.ok){
+          console.log(response)
+          return response.json()
+        }
+        else{
+          console.log(response)
+        }
+      })
       .then(response => this.setState({
         total: response,
         temperature: response.main.temp,
@@ -35,10 +44,10 @@ class App extends React.Component {
         country: response.sys.country,
         humidity: response.main.humidity,
         description: response.weather[0].main,
-        error: "",
         day: this.getDay(),
         value: "",
-        isButtonClicked: true
+        isButtonClicked: true,
+        fullDate: this.getFullDate()
       }))
   }
 
@@ -53,10 +62,15 @@ class App extends React.Component {
     return daysArray[d]
   }
 
-  render() {
-    const {temperature, description, day, city, country, isButtonClicked} = this.state
+  getFullDate() {
+    let date = new Date()
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+  }
 
-    if(isButtonClicked){
+  render() {
+    const {temperature, description, day, city, country, isButtonClicked, fullDate} = this.state
+
+    if(isButtonClicked & temperature !== undefined & this.state.error !== 'error'){
         return(
           <div>
           <Header />
@@ -70,10 +84,31 @@ class App extends React.Component {
             day={day}
             city={city}
             country={country}
+            fullDate={fullDate}
           />
           </div>
         )
-      } else {
+      }
+
+      else if (isButtonClicked & this.state.error === 'error') {
+        return(
+          <div>
+          <Header />
+            <header className="header">
+            <input type="text" onChange={this.handleChange}></input>
+            <button onClick={this.search}>Search</button>
+            <h1>The city that you typed is wrong or not in our database</h1>
+          </header>
+          </div>
+        )
+      }
+
+
+
+
+
+
+      else {
         return(
           <div>
           <Header />
