@@ -2,7 +2,6 @@ import React from 'react'
 import Header from './Header'
 import DayLayout from './DayLayout'
 
-
 class App extends React.Component {
   constructor() {
     super()
@@ -21,34 +20,37 @@ class App extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.search = this.search.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
   }
 
   search() {
     const key = 'c2e69d04079cfbe116fe0acc17abb587'
     const endpoint = 'http://api.openweathermap.org/data/2.5/weather?'
-
     fetch(`${endpoint}q=${this.state.value}&appid=${key}`)
       .then(response => {
-        if(response.ok){
-          console.log(response)
-          return response.json()
-        }
-        else{
-          console.log(response)
+        try {
+          if(response.ok){
+            console.log(response)
+            return response.json()
+            .then(response => this.setState({
+              total: response,
+              temperature: response.main.temp,
+              city: response.name,
+              country: response.sys.country,
+              humidity: response.main.humidity,
+              description: response.weather[0].main,
+              day: this.getDay(),
+              value: "",
+              isButtonClicked: true,
+              fullDate: this.getFullDate()
+            }))
+          }}
+        catch(error){
+          console.log('error', error)
+          // throw new Error('WTF')
         }
       })
-      .then(response => this.setState({
-        total: response,
-        temperature: response.main.temp,
-        city: response.name,
-        country: response.sys.country,
-        humidity: response.main.humidity,
-        description: response.weather[0].main,
-        day: this.getDay(),
-        value: "",
-        isButtonClicked: true,
-        fullDate: this.getFullDate()
-      }))
+
   }
 
   handleChange(event) {
@@ -57,14 +59,19 @@ class App extends React.Component {
 
   getDay() {
     const daysArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    let d = new Date()
-    d = d.getDay()
+    let d = new Date().getDay()
     return daysArray[d]
   }
 
   getFullDate() {
     let date = new Date()
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+  }
+
+  handleKeyPress(event) {
+    if(event.key === 'Enter'){
+      this.search()
+    }
   }
 
   render() {
@@ -75,9 +82,9 @@ class App extends React.Component {
           <div>
           <Header />
             <header className="header">
-            <input type="text" onChange={this.handleChange}></input>
-            <button onClick={this.search}>Search</button>
-          </header>
+              <input type="text" onKeyPress={this.handleKeyPress} onChange={this.handleChange}></input>
+              <button onClick={this.search}>Search</button>
+            </header>
           <DayLayout
             temperature={Math.floor((temperature - 272.15))}
             description={description}
@@ -88,29 +95,14 @@ class App extends React.Component {
           />
           </div>
         )
-      }
-
-      else if (isButtonClicked & this.state.error === 'error') {
+      }else {
         return(
           <div>
-          <Header />
-            <header className="header">
-            <input type="text" onChange={this.handleChange}></input>
-            <button onClick={this.search}>Search</button>
-            <h1>The city that you typed is wrong or not in our database</h1>
-          </header>
-          </div>
-        )
-      }
-
-      else {
-        return(
-          <div>
-          <Header />
-            <header className="header">
-            <input type="text" onChange={this.handleChange}></input>
-            <button onClick={this.search}>Search</button>
-          </header>
+            <Header />
+              <header className="header">
+              <input type="text" onKeyPress={this.handleKeyPress} onChange={this.handleChange}></input>
+              <button onClick={this.search}>Search</button>
+            </header>
           </div>
         )
       }
