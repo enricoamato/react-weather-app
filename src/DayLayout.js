@@ -4,17 +4,16 @@ import DayContent from './DayContent'
 const DayLayout = (props) => {
   return(
     <div className="box">
-
-          <DayContent
-            temperature={props.temperature}
-            description={props.description}
-            day={props.day}
-            city={props.city}
-            country={props.country}
-            fullDate={props.fullDate}
-          />
-
+      <DayContent
+        temperature={props.temperature}
+        description={props.description}
+        day={props.day}
+        city={props.city}
+        country={props.country}
+        fullDate={props.fullDate}
+      />
     </div>
+
   )
 }
 
