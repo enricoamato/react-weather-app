@@ -3,15 +3,13 @@ import React from 'react'
 const DayContent = (props) => {
 
   const imgArray = {
-    "Clouds": require('./imgs/icons/clouds.svg'),
-    "Drop": require('./imgs/icons/drop.svg'),
-    "Moon": require('./imgs/icons/moon.svg'),
-    "Snowflake": require('./imgs/icons/snowflake.svg'),
     "Clear": require('./imgs/icons/sunny.svg'),
-    "Fog": require('./imgs/icons/fog.svg')
+    "Clouds": require('./imgs/icons/clouds.svg'),
+    "Rain": require('./imgs/icons/drop.svg'),
+    "Moon": require('./imgs/icons/moon.svg'),
+    "Snow": require('./imgs/icons/snowflake.svg'),
+    "Haze": require('./imgs/icons/fog.svg')
     }
-
-
 
   return(
     <div className="content">
@@ -24,17 +22,10 @@ const DayContent = (props) => {
       </div>
 
       <div className="date">
-        <span>{props.day}</span>
+        <span>{props.day} {props.fullDate}</span>
       </div>
     </div>
   )
 }
 
 export default DayContent
-
-
-// <img alt="sun" src={imgArray["drop"]} /> <br/>
-// <img alt="sun" src={imgArray["moon"]} /> <br/>
-// <img alt="sun" src={imgArray["snowflake"]} /> <br/>
-// <img alt="sun" src={imgArray["sunny"]} /> <br/>
-// <img alt="sun" src={imgArray["fog"]} /> <br/>
