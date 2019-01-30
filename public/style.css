@@ -11,7 +11,7 @@ body {
   min-height: 100%;
   font-family: Arial;
   font-family: 'Muli', sans-serif;
-  background-image: url("./imgs/purple-gradient-background.png");
+  background-image: url("./imgs/bg-purple-pink-gradient.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -28,8 +28,8 @@ span {
 .temp {
   display: inline-block;
   font-size: 3em;
-  margin-left: 5px;
-  margin-top: 40px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .description {
@@ -38,7 +38,6 @@ span {
 
 .icon {
   display: inline-block;
-
 }
 
 .day {
@@ -49,6 +48,7 @@ span {
 
 .header {
   text-align: center;
+  color: white;
 }
 
 .box {
@@ -84,12 +84,12 @@ span {
 }
 
 img {
-  width: 10%;
+  width: 18%;
 }
 
 .date span {
-  float: left;
-  margin-top: 220px;
-  margin-left: 80px;
+  display: block;
+  margin-top: 245px;
   font-size: 20px;
+  text-align: center;
 }
