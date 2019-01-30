@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import DayLayout from './DayLayout'
-// import Search from './Search'
+
 
 class App extends React.Component {
   constructor() {
@@ -102,11 +102,6 @@ class App extends React.Component {
           </div>
         )
       }
-
-
-
-
-
 
       else {
         return(
