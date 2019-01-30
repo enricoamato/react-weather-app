@@ -47,6 +47,7 @@ span {
 }
 
 .header {
+  font-size: 1.2em;
   text-align: center;
   color: white;
 }
@@ -92,4 +93,23 @@ img {
   margin-top: 245px;
   font-size: 20px;
   text-align: center;
+}
+
+input[type=text] {
+  font-size: 20px;
+  margin-top: 10px;
+  padding-left: 0px;
+  border-radius: 2px;
+}
+
+button {
+  font-size: 22px;
+  margin-top: 10px;
+  padding-left: 0px;
+  background-color: white;
+  border: 0px solid white;
+  margin-left: 0px;
+  border-radius: 2px;
+  margin-left: 3px;
+  padding: 1px;
 }
