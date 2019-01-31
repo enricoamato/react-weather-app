@@ -10,8 +10,10 @@ const DayContent = (props) => {
     "Moon": require('./imgs/icons/moon.svg'),
     "Snow": require('./imgs/icons/snowflake.svg'),
     "Haze": require('./imgs/icons/fog.svg'),
-    "Fog": require('./imgs/icons/fog.svg')
+    "Fog": require('./imgs/icons/fog.svg'),
+    "Thunderstorm": require('./imgs/icons/thunderstorm.svg')
     }
+
 
   // const backgroundArray = {
   //   "Morning": './imgs/bg/morning.jpg',
