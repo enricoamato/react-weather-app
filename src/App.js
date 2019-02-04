@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import DayLayout from './DayLayout'
+import DayContentError from './DayContentError'
 
 class App extends React.Component {
   constructor() {
@@ -12,7 +13,7 @@ class App extends React.Component {
       country: undefined,
       humidity: undefined,
       description: undefined,
-      error: undefined,
+      error: false,
       day: undefined,
       value: undefined,
       isButtonClicked: false,
@@ -23,35 +24,38 @@ class App extends React.Component {
     this.handleKeyPress = this.handleKeyPress.bind(this)
   }
 
+
   search() {
     const key = 'c2e69d04079cfbe116fe0acc17abb587'
     const endpoint = 'http://api.openweathermap.org/data/2.5/weather?'
     fetch(`${endpoint}q=${this.state.value}&appid=${key}`)
       .then(response => {
         try {
+          console.log(response.ok, response.status)
           if(response.ok){
             console.log(response)
             return response.json()
-            .then(response => this.setState({
-              total: response,
-              temperature: response.main.temp,
-              city: response.name,
-              country: response.sys.country,
-              humidity: response.main.humidity,
-              description: response.weather[0].main,
-              day: this.getDay(),
-              value: "",
-              isButtonClicked: true,
-              fullDate: this.getFullDate()
-            }))
-          }}
+          .then(response => this.setState({
+            temperature: response.main.temp,
+            city: response.name,
+            description: response.weather[0].main,
+            day: this.getDay(),
+            isButtonClicked: true,
+            fullDate: this.getFullDate(),
+            error: false
+          }))
+        } else{
+            console.log('error')
+            this.setState({error: true})
+
+        }
+        }
         catch(error){
-          console.log('error', error)
-          // throw new Error('WTF')
+          console.log(response)
         }
       })
+    }
 
-  }
 
   handleChange(event) {
     this.setState({value: event.target.value})
@@ -75,37 +79,51 @@ class App extends React.Component {
   }
 
   render() {
-    const {temperature, description, day, city, country, isButtonClicked, fullDate} = this.state
+    const {temperature, description, day, city, country, fullDate, error, isButtonClicked} = this.state
+    console.log(error)
 
-    if(isButtonClicked & temperature !== undefined & this.state.error !== 'error'){
-        return(
-          <div>
+    if (error === false && isButtonClicked === true) {
+          return(
+            <div>
+              <Header />
+              <header className="header">
+                <input type="text" onKeyPress={this.handleKeyPress} onChange={this.handleChange}></input>
+                <button onClick={this.search}>Search</button>
+              </header>
+              <DayLayout
+                temperature={Math.floor((temperature - 272.15))}
+                description={description}
+                day={day}
+                city={city}
+                country={country}
+                fullDate={fullDate}
+              />
+            </div>
+          )
+    }
+
+    else if(error === false){
+      return(
+        <div>
           <Header />
             <header className="header">
               <input type="text" onKeyPress={this.handleKeyPress} onChange={this.handleChange}></input>
               <button onClick={this.search}>Search</button>
             </header>
-          <DayLayout
-            temperature={Math.floor((temperature - 272.15))}
-            description={description}
-            day={day}
-            city={city}
-            country={country}
-            fullDate={fullDate}
-          />
-          </div>
-        )
-      }else {
-        return(
-          <div>
-            <Header />
-              <header className="header">
-              <input type="text" onKeyPress={this.handleKeyPress} onChange={this.handleChange}></input>
-              <button onClick={this.search}>Search</button>
-            </header>
-          </div>
-        )
-      }
+        </div>
+      )
+    } else {
+      return(
+        <div>
+          <Header />
+          <header className="header">
+            <input type="text" onKeyPress={this.handleKeyPress} onChange={this.handleChange}></input>
+            <button onClick={this.search}>Search</button>
+          </header>
+          <DayContentError />
+        </div>
+      )
+    }
   }
 }
 
