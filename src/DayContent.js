@@ -11,7 +11,8 @@ const DayContent = (props) => {
     "Snow": require('./imgs/icons/snowflake.svg'),
     "Haze": require('./imgs/icons/fog.svg'),
     "Fog": require('./imgs/icons/fog.svg'),
-    "Thunderstorm": require('./imgs/icons/thunderstorm.svg')
+    "Thunderstorm": require('./imgs/icons/thunderstorm.svg'),
+    "Mist": require('./imgs/icons/fog.svg')
     }
 
 
