@@ -29,11 +29,12 @@ span {
   display: inline-block;
   font-size: 3em;
   margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .description {
-  font-size: 1.4em;
+  font-size: 1.3em;
+  margin-bottom: 10px;
 }
 
 .icon {
@@ -56,7 +57,7 @@ span {
   font-size: 2em;
   text-align: center;
   color: black;
-  margin-top: 36%;
+  margin-top: 3%;
   display: inline-block;
 }
 
@@ -93,6 +94,7 @@ span {
 .boxError > img {
   width: auto;
   height: 45%;
+  margin-top: 12%;
 }
 
 .box:hover {
@@ -118,8 +120,8 @@ img {
 
 .date span {
   display: block;
-  margin-top: 245px;
-  font-size: 20px;
+  margin-top: 210px;
+  font-size: 21px;
   text-align: center;
 }
 
@@ -140,4 +142,14 @@ button {
   border-radius: 2px;
   margin-left: 3px;
   padding: 1px;
+}
+
+.humidity, .wind {
+  font-size: 15px;
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.additionalInfo {
+  list-style-type: none;
 }
