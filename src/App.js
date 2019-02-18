@@ -12,10 +12,11 @@ class App extends React.Component {
       city: undefined,
       country: undefined,
       humidity: undefined,
+      wind: undefined,
       description: undefined,
       error: false,
       day: undefined,
-      value: undefined,
+      value: undefined, //query
       isButtonClicked: false,
       fullDate: undefined
     }
@@ -38,6 +39,8 @@ class App extends React.Component {
           .then(response => this.setState({
             temperature: response.main.temp,
             city: response.name,
+            wind: response.wind.speed,
+            humidity: response.main.humidity,
             description: response.weather[0].main,
             day: this.getDay(),
             isButtonClicked: true,
@@ -79,8 +82,9 @@ class App extends React.Component {
   }
 
   render() {
-    const {temperature, description, day, city, country, fullDate, error, isButtonClicked} = this.state
+    const {temperature, description, day, city, country, fullDate, error, isButtonClicked, wind, humidity} = this.state
     console.log(error)
+    console.log(this.state.total)
 
     if (error === false && isButtonClicked === true) {
           return(
@@ -97,6 +101,8 @@ class App extends React.Component {
                 city={city}
                 country={country}
                 fullDate={fullDate}
+                wind={wind}
+                humidity={humidity}
               />
             </div>
           )
