@@ -11,6 +11,8 @@ const DayLayout = (props) => {
         city={props.city}
         country={props.country}
         fullDate={props.fullDate}
+        wind={props.wind}
+        humidity={props.humidity}
       />
     </div>
 
