@@ -1,3 +1,9 @@
+## Image
+
+![Weather App](http://i65.tinypic.com/2zppan4.jpg)
+
+---------------------------------------------------------------------------------------------------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
